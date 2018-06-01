@@ -1,0 +1,100 @@
+<html>
+    <head>
+        <title>Puzzle by ɈÐ</title>
+        <meta charset="utf-8">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            //setInterval(function() {console.log(document.getElementById("lvl").value)}, 1000);
+        </script>
+        <link href="style.css" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="start">
+            <h1>Wybierz poziom trudności</h1>
+            <input type="range" id="lvl" min="1" max="3" onclick='hard($("#lvl"))'>
+            <b id="h">ŚREDNI</b>
+            <button onclick='start($("#lvl"))' width="150px">Wystartuj grę!</button>
+        </div>
+        <div class="box">
+            <h2 id="rd">Twój obraz</h2>
+            <ul id="sortable">
+            <!---
+                tu ten obraz xd
+                -->
+            </ul>
+        </div>
+        <div class="box">
+            <h2>Oryginalny obraz</h2>
+            <br>
+            <div id="picture"></div>
+        </div>
+        <script>
+            function rand(){
+                var random =Math.floor(Math.random()*5)+1;; //Math.floor(Math.random()*5)+1;
+                $("#picture").css("background", "url(graf/"+random+".jpg) no-repeat");
+                var stable = "graf/"+random+"/";
+                var arr = new Array;
+                for(var i = 0; i <= 15; i++)
+                    {
+                        arr[i]=stable+(i+1)+".png";
+                    }
+                return arr;
+                }
+            function start(x){
+                $("#start").remove();
+                var x = rand();
+                main(x);
+            }
+            function hard(x){
+                switch(x.val())
+                    {
+                        case "1": $("#h").text("ŁATWY"); break;
+                        case "2": $("#h").text("ŚREDNI"); break;
+                        case "3": $("#h").text("TRUDNY"); break;
+                    }
+            }
+            function main(x)
+            {
+                shuffle(x); //mix
+                for(var i = 0; i <=15; i++){
+                    $("#sortable").append("<li class='element'><img src='"+x[i]+"' alt='puzzle'></li>");
+                }
+                $( function() {
+                    $( "#sortable" ).sortable();
+                    $( "#sortable" ).disableSelection();
+                } );
+                $("#rd").click(function() {
+                    var end = true;
+                    for(var i=0; i <=15; i++){
+                        var x = i;
+                       x++;
+                       if(document.getElementsByClassName( 'element ui-sortable-handle' )[i].innerHTML=='<img src="graf/1/'+x+'.png" alt="puzzle">')
+                       {
+                           //
+                       } else {
+                            end=false;
+                            }
+                        }
+                    if(end==true){
+                        alert("Wygrałeś!");
+                        
+                    } else {
+                        alert("Masz gdzieś błąd. Znajdź go i wróć tu jak najszybciej :D")
+                    }
+                });
+              
+            }
+            function shuffle(a) {
+                var j, x, i;
+                for (i = a.length - 1; i > 0; i--) {
+                    j = Math.floor(Math.random() * (i + 1));
+                    x = a[i];
+                    a[i] = a[j];
+                    a[j] = x;
+                }
+                return a;
+            }
+        </script>
+    </body>
+</html>
