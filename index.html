@@ -53,14 +53,14 @@
                 var x = rand();
                 main(x);
             }
-            function hard(x){
+            /*function hard(x){
                 switch(x.val())
                     {
                         case "1": $("#h").text("ŁATWY"); break;
                         case "2": $("#h").text("ŚREDNI"); break;
                         case "3": $("#h").text("TRUDNY"); break;
                     }
-            }
+            }*/
             function main(x)
             {
                 shuffle(x); //mix
@@ -106,7 +106,7 @@
             }
             function win(){
                 let link = "index.html";
-                $("body").append("<div id='win'><h1>Wygrałeś</h1><br><span onClick='window.location = "+"\""+link+"\"'>Jeszcze jeden raz?</span></div>");
+                $("body").append("<div id='win'><video width='400' autoplay loop><source src='graf/ClosedTestyAbalone-mobile.mp4' type='video/mp4'></video><h1>Wygrałeś</h1><br><span onClick='window.location = "+"\""+link+"\"'>Jeszcze jeden raz?</span></div>");
             }
         </script>
     </body>
