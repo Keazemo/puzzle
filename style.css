@@ -46,11 +46,42 @@ button:hover{
     width: 450px;
     height: 450px;
     padding: inherit;
+    margin-left: auto;
 }
 ul{
     width: 450px;
     height: 450px;
+    margin-left: auto;
 
 }
 #sortable { list-style-type: none; width: 450px; }
-#sortable li { float: left; width: 100px; height: 100px;}
+#sortable li { float: left; width: 100px; height: 100px;cursor:grab;}
+h1#sprawdz{
+    margin: 3px;
+    padding: 3px;
+    text-decoration:inherit;
+    
+}
+#sprawdz:hover{
+    text-decoration: underline;
+    cursor:pointer;
+}
+#win{
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#win > h1, p{
+    opacity: 1;
+}

@@ -17,12 +17,13 @@
             <button onclick='start($("#lvl"))' width="150px">Wystartuj grę!</button>
         </div>
         <div class="box">
-            <h2 id="rd">Twój obraz</h2>
+            <h2>Twój obraz</h2>
             <ul id="sortable">
             <!---
                 tu ten obraz xd
                 -->
             </ul>
+            <h1 id="sprawdz">Sprawdź odpowiedź</h1>
         </div>
         <div class="box">
             <h2>Oryginalny obraz</h2>
@@ -30,8 +31,9 @@
             <div id="picture"></div>
         </div>
         <script>
+            var random =Math.floor(Math.random()*5)+1;
             function rand(){
-                var random =Math.floor(Math.random()*5)+1;; //Math.floor(Math.random()*5)+1;
+                 //Math.floor(Math.random()*5)+1;
                 $("#picture").css("background", "url(graf/"+random+".jpg) no-repeat");
                 var stable = "graf/"+random+"/";
                 var arr = new Array;
@@ -64,20 +66,22 @@
                     $( "#sortable" ).sortable();
                     $( "#sortable" ).disableSelection();
                 } );
-                $("#rd").click(function() {
+                $("#sprawdz").click(function() {
                     var end = true;
                     for(var i=0; i <=15; i++){
                         var x = i;
                        x++;
-                       if(document.getElementsByClassName( 'element ui-sortable-handle' )[i].innerHTML=='<img src="graf/1/'+x+'.png" alt="puzzle">')
+                       if(document.getElementsByClassName( 'element ui-sortable-handle' )[i].innerHTML=='<img src="graf/'+random+'/'+x+'.png" alt="puzzle">')
                        {
                            //
                        } else {
+                            //console.log();
                             end=false;
                             }
                         }
                     if(end==true){
                         alert("Wygrałeś!");
+                        win();
                         
                     } else {
                         alert("Masz gdzieś błąd. Znajdź go i wróć tu jak najszybciej :D")
@@ -94,6 +98,10 @@
                     a[j] = x;
                 }
                 return a;
+            }
+            function win(){
+                let link = "index.html";
+                $("body").append("<div id='win'><h1>Wygrałeś</h1><br><span onClick='window.location = "+"\""+link+"\"'>Jeszcze jeden raz?</span></div>");
             }
         </script>
     </body>
